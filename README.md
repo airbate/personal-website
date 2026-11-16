@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# airbate — Personal Website & Reading Library
 
-## Getting Started
+一个以**个人书单（Library）**与**阅读笔记（Reading Notes）**为核心的极简数字花园个人网站，基于 Next.js + Tailwind CSS v4 构建。
 
-First, run the development server:
+## 本地运行
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 `http://localhost:3000`。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 如何添加你看过的书籍
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. 将书籍封面图片放入 `public/images/books/`（或直接使用网络封面 URL）。
+2. 打开 `src/data/books.ts`，在 `BOOKS` 数组中添加一条记录：
 
-## Learn More
+```ts
+{
+  id: "unique-id",
+  title: "书名",
+  author: "作者",
+  cover: "/images/books/your-cover.webp",
+  category: "Technology", // 分类：Science / Technology / History / Anthropology 等
+  readYear: "2026",
+  rating: 5,
+  takeaway: "简短的一句话读后感或收获。",
+  href: "https://book.douban.com/...", // 外部参考链接
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 自定义个人信息与阅读笔记
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **站点名称、简介、GitHub 链接**：编辑 `src/data/site.ts`
+- **阅读笔记**：编辑 `src/data/notes.ts`

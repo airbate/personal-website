@@ -1,26 +1,462 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Canela Deck";
+  src: url("/fonts/CanelaDeck-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Canela Deck";
+  src: url("/fonts/CanelaDeck-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Canela Deck";
+  src: url("/fonts/CanelaDeck-Light.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Medium.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-white: #fff;
+  --color-light-cream: #fcfbf7;
+  --color-cream: #f6f5f1;
+  --color-tinted-cream: #e6e3e1;
+  --color-black: #353534;
+  --color-gray-800: #4a4a46;
+  --color-gray-600: #73706d;
+  --color-gray-500: #8e8f94;
+  --color-gray-400: #afb0b6;
+  --color-gray-300: #d3d3d1;
+  --color-gray-200: #e3e3e0;
+  --color-gray-100: #e9e9e7;
+  --color-bright-crimson: #960462;
+  --color-crimson: #5f023e;
+  --color-sea-blue: #04a5bb;
+  --color-medium-sea-blue: #008ba3;
+  --color-dark-sea-blue: #00758f;
+  --color-purple: #7558b2;
+  --color-salmon: #fd8370;
+  --color-gold: #ffd09c;
+  --color-dark-salmon: #e1624f;
+  --color-status-success: #4caf70;
+  --color-crimson-5: color-mix(in srgb, var(--color-bright-crimson) 5%, transparent);
+  --color-crimson-10: color-mix(in srgb, var(--color-bright-crimson) 10%, transparent);
+  --color-crimson-20: color-mix(in srgb, var(--color-bright-crimson) 20%, transparent);
+  --color-crimson-50: color-mix(in srgb, var(--color-bright-crimson) 50%, transparent);
+  --color-sea-blue-20: color-mix(in srgb, var(--color-sea-blue) 20%, transparent);
+  --color-sea-blue-30: color-mix(in srgb, var(--color-sea-blue) 30%, transparent);
+  --color-sea-blue-40: color-mix(in srgb, var(--color-sea-blue) 40%, transparent);
+  --color-sea-blue-70: color-mix(in srgb, var(--color-sea-blue) 70%, transparent);
+
+  --font-serif: "Canela Deck", Georgia, serif;
+  --font-body: "Canela Text", Georgia, serif;
+  --font-sans: "Lato", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --leading-tighter: 110%;
+  --leading-tight: 120%;
+  --leading-snug: 130%;
+  --leading-base: 140%;
+  --leading-loose: 160%;
+  --leading-looser: 200%;
+
+  --border-radius-sm: 0.2rem;
+  --border-radius-base: 0.4rem;
+  --border-radius-lg: 0.6rem;
+
+  --box-shadow-sm:
+    0.2px 0.2px 0.8px -10px #280a0004,
+    0.4px 0.4px 2px -10px #280a0005,
+    0.8px 0.8px 3.8px -10px #280a0006,
+    1.3px 1.3px 6.7px -10px #280a0008,
+    2.5px 2.5px 12.5px -10px #280a0009,
+    6px 6px 30px -10px #280a000d;
+  --box-shadow-md:
+    0.2px 0.4px 0.8px -10px #00000008,
+    0.4px 0.9px 2px -10px #00000008,
+    0.8px 1.8px 3.8px -10px #0000000a,
+    1.3px 3.1px 6.7px -10px #0000000b,
+    2.5px 5.8px 12.5px -10px #0000000f,
+    6px 14px 30px -10px #00000014;
+  --box-shadow-lg:
+    1px 0.9px 2.3px -3px #1e0a0a0a,
+    2.4px 2.2px 5.5px -3px #1e0a0a0d,
+    4.5px 4.1px 10.4px -3px #1e0a0a0f,
+    8px 7.4px 18.5px -3px #1e0a0a12,
+    15px 13.8px 34.7px -3px #1e0a0a14,
+    36px 33px 83px -3px #1e0a0a33;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --ease-hover: ease;
+
+  --dur-micro: 0.12s;
+  --dur-quick: 0.18s;
+  --dur-base: 0.24s;
+  --dur-page: 0.38s;
+
+  /* Fluid sizing (matching Utopia scale 320..1200) */
+  --fluid-min-width: 320;
+  --fluid-max-width: 1200;
+  --fluid-screen: 100vw;
+  --fluid-bp: clamp(0, (var(--fluid-screen) - 20rem) / (1200 - 320), 1);
+
+  --fc-s-min: 20;
+  --fc-s-max: 22;
+  --fc-3xs-min: 5;
+  --fc-3xs-max: 5.5;
+  --fc-2xs-min: 10;
+  --fc-2xs-max: 11;
+  --fc-xs-min: 15;
+  --fc-xs-max: 16.5;
+  --fc-m-min: 30;
+  --fc-m-max: 33;
+  --fc-l-min: 40;
+  --fc-l-max: 44;
+  --fc-xl-min: 60;
+  --fc-xl-max: 66;
+  --fc-2xl-min: 80;
+  --fc-2xl-max: 88;
+  --fc-3xl-min: 120;
+  --fc-3xl-max: 132;
+
+  --space-3xs: clamp(0.3125rem, 0.295rem + 0.09vw, 0.34375rem);
+  --space-2xs: clamp(0.625rem, 0.59rem + 0.18vw, 0.6875rem);
+  --space-xs: clamp(0.9375rem, 0.885rem + 0.27vw, 1.03125rem);
+  --space-s: clamp(1.25rem, 1.18rem + 0.36vw, 1.375rem);
+  --space-m: clamp(1.875rem, 1.77rem + 0.54vw, 2.0625rem);
+  --space-l: clamp(2.5rem, 2.36rem + 0.72vw, 2.75rem);
+  --space-xl: clamp(3.75rem, 3.54rem + 1.08vw, 4.125rem);
+  --space-2xl: clamp(5rem, 4.72rem + 1.44vw, 5.5rem);
+
+  --font-size-2xs: 13px;
+  --font-size-xs: clamp(0.90625rem, 0.89rem + 0.05vw, 0.9375rem);
+  --font-size-sm: clamp(1rem, 0.98rem + 0.06vw, 1.03125rem);
+  --font-size-base: clamp(1.25rem, 1.18rem + 0.22vw, 1.375rem);
+  --font-size-md: clamp(1.5625rem, 1.44rem + 0.4vw, 1.7875rem);
+  --font-size-lg: clamp(1.875rem, 1.66rem + 0.68vw, 2.25rem);
+  --font-size-xl: clamp(2.44125rem, 2.26rem + 0.56vw, 2.75rem);
+  --font-size-2xl: clamp(2.929rem, 2.6rem + 1.04vw, 3.5rem);
+  --font-size-3xl: clamp(3.6rem, 2.72rem + 2.75vw, 5.1125rem);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-size: 16px;
+  background-color: var(--color-cream);
+  color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  line-height: var(--leading-base);
+}
+
+/* Styled animated underline link */
+.styled-link {
+  cursor: pointer;
+  white-space: nowrap;
+  padding-bottom: 0.25rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.styled-link:focus-visible {
+  outline: 2px solid var(--color-sea-blue);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.styled-link::before {
+  content: "";
+  transform-origin: 50% 100%;
+  background: var(--color-sea-blue);
+  transition: clip-path var(--dur-base) var(--ease-hover), transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+  clip-path: polygon(0% 0%, 0% 100%, 0px 100%, 0px 0px, 100% 0px, 100% 100%, 0px 100%, 0px 100%, 100% 100%, 100% 0%);
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 95%;
+  left: 0;
+}
+
+.styled-link:is(:hover, :focus-visible)::before {
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 50% 0px, 50% 0px, 50% 100%, 50% 100%, 0px 100%, 100% 100%, 100% 0%);
+  transform: translateY(2px) scaleY(2);
+}
+
+.styled-link span {
+  transition: transform var(--dur-base) var(--ease-out), color var(--dur-quick) var(--ease-hover);
+  color: var(--color-bright-crimson);
+  display: inline-block;
+}
+
+.styled-link:is(:hover, :focus-visible) span {
+  color: var(--color-crimson);
+  transform: translateY(-2px);
+}
+
+.styled-link:active span {
+  transition-duration: var(--dur-micro);
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Cascade entrance animations */
+@keyframes mv-cascade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mv-cascade-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cascade,
+.cascade-fade {
+  animation-duration: 0.26s;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  animation-fill-mode: backwards;
+  animation-delay: calc(0.1s + var(--cascade, 0) * 45ms);
+}
+
+.cascade {
+  animation-name: mv-cascade-in;
+}
+
+.cascade-fade {
+  animation-name: mv-cascade-fade-in;
+}
+
+/* Logo hover leaf animation */
+@keyframes leaf-flutter {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-6deg) scale(1.06); }
+  60% { transform: rotate(4deg) scale(1.03); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+#logo .leaf,
+#logo .leaf-2 {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#logo.css-animate .leaf,
+#logo:hover .leaf {
+  animation: leaf-flutter 0.75s var(--ease-spring);
+}
+
+#logo.css-animate .leaf-2,
+#logo:hover .leaf-2 {
+  animation: leaf-flutter 0.75s var(--ease-spring) 0.05s;
+}
+
+/* Page wrapper */
+.page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 0 var(--space-m);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: 0 var(--space-xs);
+  }
+}
+
+/* Garden asymmetric 3-column layout */
+.garden-section {
+  margin: var(--space-xl) 0 var(--space-s);
+  gap: var(--space-xl);
+  grid-template:
+    "essays essays notes"
+    "patterns library library" / 1fr 1fr 1fr;
+  display: grid;
+}
+
+@media (max-width: 1024px) {
+  .garden-section {
+    gap: var(--space-s);
+  }
+}
+
+@media (max-width: 768px) {
+  .garden-section {
+    gap: var(--space-l);
+    grid-template:
+      "essays"
+      "notes"
+      "patterns"
+      "library" / 1fr;
+  }
+}
+
+.essays-section {
+  grid-area: essays;
+}
+
+.notes-section {
+  grid-area: notes;
+}
+
+.patterns-section {
+  grid-area: patterns;
+}
+
+.library-section {
+  grid-area: library;
+}
+
+/* Essay card */
+.essay-card {
+  border: 1px solid var(--color-tinted-cream);
+  padding: var(--space-s);
+  margin: 0 var(--space-2xs) var(--space-2xs) 0;
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--box-shadow-sm);
+  background: var(--color-light-cream);
+  transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-quick) var(--ease-hover);
+  will-change: transform, box-shadow;
+  color: var(--color-gray-800);
+  cursor: pointer;
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+}
+
+.essay-card:hover {
+  box-shadow: var(--box-shadow-md);
+  transform: scale3d(1.02, 1.02, 1.02);
+}
+
+.essay-card:hover h3 {
+  color: var(--color-crimson);
+}
+
+/* Book card */
+.book-card {
+  margin: 0 var(--space-2xs) var(--space-2xs) 0;
+  padding: 0 var(--space-3xs) var(--space-l) var(--space-3xs);
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}
+
+.book-card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-quick) var(--ease-hover), opacity var(--dur-quick) var(--ease-hover);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--box-shadow-sm);
+  border: 1px solid var(--color-tinted-cream);
+}
+
+.book-card .book-meta {
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.book-card .book-title {
+  transition: color var(--dur-quick) var(--ease-hover);
+  margin: var(--space-xs) 0 var(--space-3xs) 0;
+  line-height: var(--leading-base);
+  color: var(--color-black);
+}
+
+.book-link:hover .book-card img,
+.book-link:focus-visible .book-card img {
+  box-shadow: var(--box-shadow-md);
+  opacity: 0.2;
+  transform: scale3d(1.02, 1.02, 1.02);
+}
+
+.book-link:hover .book-card .book-title,
+.book-link:focus-visible .book-card .book-title {
+  color: var(--color-crimson);
+}
+
+.book-link:hover .book-card .book-meta,
+.book-link:focus-visible .book-card .book-meta {
+  transform: translateY(4px);
+}
+
+.book-link:hover .book-card .external-hover-link,
+.book-link:focus-visible .book-card .external-hover-link {
+  opacity: 1;
 }
